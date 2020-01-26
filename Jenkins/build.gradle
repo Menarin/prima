@@ -10,7 +10,22 @@ plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
 }
+configurations {
+    cucumberRuntime {
+        extendsFrom testRuntime
+    }
+}
 
+task cucumber() {
+    dependsOn assemble, compileTestJava
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty', '--glue', 'gradle.cucumber', 'src/test/resources']
+        }
+    }
+}
 repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
@@ -26,4 +41,9 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
+    //Cucumber
+	testCompile 'io.cucumber:cucumber-java:4.7.4'
+	testCompile 'io.cucumber:cucumber-junit:4.7.4'
+	
+	testImplementation 'org.mockito:mockito-core:3.2.4'
 }

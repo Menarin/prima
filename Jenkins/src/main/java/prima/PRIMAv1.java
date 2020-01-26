@@ -31,19 +31,19 @@ public class PRIMAv1 {
 		int reduccionConductorSeguro = Aseguradora.reduccionConductorSeguro(conductor);
 		
 		if(reduccionConductorSeguro == -1) {
-			System.out.println("ï¿½Sin Puntos de Licencia!...");
+			System.out.println("¡Sin Puntos de Licencia!");
 			return 0;
 		}
 		/*
 		 * if(reduccionConductorSeguro == 1) {
-		 * System.out.println("Puntos de Licencia Invï¿½lidos"); return; }
+		 * System.out.println("Puntos de Licencia Inválidos"); return; }
 		 */
 		
 		
 		System.out.println("Calculando Valor Prima a Pagar...");
 		double primaPagar = Aseguradora.calcularPrima(500.0, factorEdad, reduccionConductorSeguro);
 		
-		System.out.println("El valor calculado  de la prima es: $" + primaPagar);
+		System.out.println("El valor calculado es: $" + primaPagar);
 		return primaPagar;
 	}
 	
